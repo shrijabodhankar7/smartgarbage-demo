@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Garbage - Registration</title>
+</head>
+
+<style>
+  nav {
+    background: #FFFFFF;
+    padding: 15px 0;
+    border-bottom: 1px solid #E4EDE1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .nav-bar {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo h2 {
+    color: #1ca949;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .nav-signin .button {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #2E7D32;
+    background: transparent;
+    cursor: pointer;
+    color: #2E7D32;
+    margin-left: 10px;
+    transition: 0.3s ease;
+  }
+
+  .nav-signin .button:hover {
+    background-color: #2E7D32;
+    color: #fff;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F6D8;   /* FIXED: removed broken image */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vh;
+  }
+
+  .form-wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 80px;
+  }
+
+  .big-register-form h2 {
+    text-align: center;
+    color: #2e8b57;
+    margin-bottom: 25px;
+  }
+
+  .big-register-form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+  }
+
+  .big-register-form input,
+  .big-register-form textarea,
+  .big-register-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: white;
+  }
+
+  .big-register-form button {
+    width: 100%;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .big-register-form button:hover {
+    background-color: purple;
+  }
+</style>
+
+<body>
+
+  <nav>
+    <div class="nav-bar">
+      <div class="logo">
+        <h2>Waste Management</h2>
+      </div>
+      <div class="nav-signin">
+        <button class="button" onclick="window.location.href='login.html'">Login</button>
+        <button class="button" onclick="window.location.href='register.html'">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="form-wrapper">
+
+    <!-- FIXED: form submits correctly to Flask -->
+    <form class="big-register-form" method="POST" action="/register">
+
+      <h2>User Registration</h2>
+      <label>Full Name:</label>
+      <input type="text" name="fullname" id="fullname"
+       placeholder="Enter your full name"
+       required
+       pattern="[A-Za-z ]+"
+       title="Full name should contain only letters and spaces">
+
+      <label>Email</label>
+        <input type="email" id="email" name="email" placeholder="abcd123@gmail.com"
+       required
+       pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+       title="Enter a valid email address.">
+        <div class="error" id="emailError"></div>
+
+
+      <label>Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="+91-8734567890"
+       required minlength="10" maxlength="10"
+       pattern="[0-9]{10}"
+       title="Enter a valid 10-digit phone number.">
+        <div class="error" id="phoneError"></div>
+
+      <label>Address:</label>
+      <textarea name="address" placeholder="Enter your address" rows="3" required></textarea>
+
+      <label>Area:</label>
+      <select name="area" id="Area" required>
+        <option value="">--Select--</option>
+        <option value="Shrinagar">Shrinagar</option>
+        <option value="Bhagyanagar">Bhagyanagar</option>
+        <option value="Shivajinagar">Shivajinagar</option>
+      </select>
+
+      <label>Username:</label>
+      <input type="text" name="username" placeholder="Enter your username" required>
+
+      <label>Password</label>
+        <input type="password" id="password" name="password"
+       required minlength="6"
+       title="Password must be at least 6 characters.in which one capital letter and special character and some numbers ">
+        <div class="error" id="passwordError"></div>
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password"
+       required minlength="6"
+       title="Confirm password must match the password.">
+
+      <button type="submit">Register Now</button>
+
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Garbage</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        /* Top Header */
+        .header {
+            background: #2e7d32;
+            color: white;
+            padding: 18px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        /* Container */
+        .container {
+            padding: 16px;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Photo Box */
+        .photo-box {
+            background: #e0e0e0;
+            height: 200px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .photo-box img {
+            height: 100%;
+            width: auto;
+        }
+
+        /* Upload Button */
+        .btn {
+            width: 100%;
+            background: #1e88e5;
+            border: none;
+            padding: 14px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #1565c0;
+        }
+
+        .small-link {
+            color: #1e88e5;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .label-title {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            resize: none;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+
+        .bottom-nav div {
+            text-align: center;
+            color: #1e88e5;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .bottom-nav .inactive {
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">Report Garbage</div>
+
+    <div class="container">
+
+        <!-- Photo Section -->
+        <div class="card">
+            <div class="photo-box" id="photoPreview">
+                <img src="https://cdn-icons-png.flaticon.com/512/685/685655.png" id="defaultIcon">
+                <p id="noPhotoText">No photo uploaded</p>
+            </div>
+
+            <input type="file" id="photoUpload" accept="image/*" style="display:none;">
+            
+            <button class="btn" onclick="document.getElementById('photoUpload').click();">
+                📁 Upload Photo
+            </button>
+        </div>
+
+        <!-- Location Section -->
+        <div class="card">
+            <div class="label-title">📍 Location:</div>
+            <p>37.421998, -122.084000</p>
+            <a href="#" class="small-link">🔄 Refresh Location</a>
+        </div>
+
+        <!-- User Info -->
+        <div class="card">
+            <div class="label-title">👤 Your Information:</div>
+            <p>Name: Meera</p>
+            <p>Phone: 1231231231</p>
+        </div>
+
+        <!-- Description -->
+        <div class="card">
+            <div class="label-title">📝 Description (Optional):</div>
+            <textarea rows="4" placeholder="Write something..."></textarea>
+        </div>
+
+    </div>
+
+   <div class="bottom-nav">
+    <a href="{{ url_for('report_garbage') }}">📍 Report Garbage</a>
+    <a href="{{ url_for('my_reports') }}">📄 My Reports</a>
+    <a href="{{ url_for('profile') }}">👤 Profile</a>
+</div>
+
+
+
+    <script>
+        // Display uploaded image
+        const uploadInput = document.getElementById("photoUpload");
+        const photoPreview = document.getElementById("photoPreview");
+        const noPhotoText = document.getElementById("noPhotoText");
+        const defaultIcon = document.getElementById("defaultIcon");
+
+        uploadInput.onchange = () => {
+            const file = uploadInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    photoPreview.innerHTML = `<img src="${reader.result}" style="height:100%; width:auto;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+    </script>
+
+</body>
+</html>

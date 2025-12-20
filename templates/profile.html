@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+    }
+
+    /* Header */
+    .header {
+        background: #2e7d32;
+        color: white;
+        padding: 18px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    /* Profile Top Section */
+    .profile-header {
+        background: #2e7d32;
+        padding: 30px 0;
+        text-align: center;
+        color: white;
+    }
+
+    .profile-circle {
+        width: 90px;
+        height: 90px;
+        background: #4caf50;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
+        font-weight: bold;
+        margin: 0 auto 15px;
+    }
+
+    .username {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .user-role {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.3);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    /* Card Box */
+    .card {
+        background: white;
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        margin-bottom: 18px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 12px;
+        color: #333;
+    }
+
+    .info-row {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        margin: 10px 0;
+        color: #444;
+        gap: 10px;
+    }
+
+    /* Statistics Section */
+    .stats-box {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .stat-item {
+        background: #f9f9f9;
+        padding: 15px 0;
+        width: 32%;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .stat-number {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #2e7d32;
+    }
+
+    .stat-number.orange {
+        color: #ff9800;
+    }
+
+    .stat-number.blue {
+        color: #2e7d32;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+    }
+
+    .bottom-nav div {
+        text-align: center;
+        font-size: 13px;
+        color: #777;
+    }
+
+    .active {
+        color: #2e7d32 !important;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">Profile</div>
+
+    <!-- Profile Top -->
+    <div class="profile-header">
+        <div class="profile-circle">M</div>
+        <div class="username">Meera</div>
+        <div class="user-role">User Account</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Contact Information -->
+        <div class="card">
+            <div class="card-title">Contact Information</div>
+
+            <div class="info-row">📞 1231231231</div>
+            <div class="info-row">📧 meera@gmail.com</div>
+            <div class="info-row">📍 Shivaji Nagar</div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="card">
+            <div class="card-title">Statistics</div>
+
+            <div class="stats-box">
+                <div class="stat-item">
+                    <div class="stat-number blue">1</div>
+                    <div class="stat-label">Total Reports</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number orange">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-number blue">1</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom-nav">
+    <a href="{{ url_for('report_garbage') }}">📍 Report Garbage</a>
+    <a href="{{ url_for('my_reports') }}" >📄 My Reports</a>
+    <a href="{{ url_for('profile') }}">👤 Profile</a>
+</div>
+
+
+</body>
+</html>
